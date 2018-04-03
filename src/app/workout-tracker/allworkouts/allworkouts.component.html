@@ -1,0 +1,49 @@
+<form class="form-horizontal" #frm="ngForm">
+    <div class="well well-md col-md-12" >
+      
+      <div class="row">        
+        <div class="col-md-12">
+           Search : <input list="searchworkout" (change)="searchWorkout(sname.value)" value="" class="form-control " name="searchworkout" #sname>
+                <datalist id="searchworkout">                   
+                    
+                            <option *ngFor="let workout of ddlworkOuts">
+                                    {{workout.WorkOutTitle}}
+                                </option>
+                  </datalist>              
+          </div>
+    
+      </div><br>      
+        <div *ngFor="let workout of workOuts">
+          <div class="panel panel-body" style="background:#f5f5f5 ; border-color:black" >
+            <div class="row">
+              
+                <div class="col-md-12">                  
+                    <input type="text"  class="form-control" [disabled]="true"
+                     [value]="workout.WorkOutTitle" >                     
+                  </div>                  
+              </div>    <br>
+              <div class="row">   
+                  <a class="btn btn-default col-md-2" style="margin-left:25px;"                   
+                  [routerLink]="['/Edit', workout.WorkOutId]">
+                  Edit</a>         
+                  <button class="col-md-offset-1 btn btn-default col-md-2" (click)="deleteWorkOut(workout.WorkOutId)">Delete</button>         
+                 
+                 
+                  <button class="col-md-offset-1 btn btn-default col-md-2" (click)="startWorkOut(workout.WorkOutId)"
+                   [disabled]="workout.StartDate" >
+                  Start</button>   
+                   
+                  
+                  <button class="col-md-offset-1 btn btn-default col-md-2" (click)="endWorkOut( workout.Id,workout.WorkOutId)"
+                  [disabled]="!workout.StartDate">
+                  End</button>     
+                  
+                </div>    
+              <br>
+            </div>
+        </div>
+      
+       
+      
+    </div></form>
+    

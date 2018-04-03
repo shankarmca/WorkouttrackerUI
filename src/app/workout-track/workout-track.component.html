@@ -1,0 +1,72 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+<form class="form-horizontal" #wrkoutFrm="ngForm">
+    <div class="well well-md col-md-12">
+
+        <div class="row">
+            <div class="col-md-3">
+                <label for="title">Workout Time of Day:</label> {{calroiesummary.CurrentDay}} Min
+            </div>
+            <div class="col-md-3">
+                <span for="title"></span>
+            </div>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label for="title">Workout Time of Week:</label> {{calroiesummary.CurrentWeek}} Min
+            </div>
+            <div class="col-md-3">
+                <span for="title"></span>
+            </div>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label for="title">Workout Time of Month:</label> {{calroiesummary.CurrentMonth}} Min
+            </div>
+            <div class="col-md-3">
+                <span for="title"></span>
+            </div>
+
+
+        </div>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <canvas baseChart
+            [data]="barChartData"
+            [labels]="barChartLabels"
+            [chartType]="barChartType"
+            [legend]="barChartLegend"></canvas>
+          <strong>Week Total Calories : {{weekTotalCalorie}} </strong>
+        </div>
+        <div class="col-md-3">
+            <canvas baseChart
+            [data]="barChartData1"
+            [labels]="barChartLabels1"
+            [chartType]="barChartType"
+            [legend]="barChartLegend"
+           ></canvas>
+           <strong>Month Total Calories :{{monthlyTotalCalorie}}</strong>
+        </div>
+        <div class="col-md-3">
+            <canvas baseChart
+            [data]="barChartData2"
+            [labels]="barChartLabels2"
+            [chartType]="barChartType"
+            [legend]="barChartLegend"
+           ></canvas>
+           <strong>Year Total Calories :{{yearlyTotalCalorie}}</strong>
+        </div>
+
+    </div>
+   
+
+</form>

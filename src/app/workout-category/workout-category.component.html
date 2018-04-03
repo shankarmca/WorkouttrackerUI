@@ -1,0 +1,58 @@
+<form class="form-horizontal" #frm="ngForm">
+    <div class="well well-md col-md-12" >
+      <div class="row">
+        <div class="col-md-12">
+          <h1><span class="label label-default col-md-12">Add Category</span></h1>       
+        </div>
+      </div><br>
+      <div class="row">        
+        <div class="col-md-12">
+              Search:  <input list="searchcategory" (change)="searchCategory(sname.value)" value="" class="form-control " name="searchcategory" #sname>
+                <datalist id="searchcategory">                   
+                        <option *ngFor="let category of ddlCategories">
+                                {{category.CategoryName}}
+                            </option>                   
+                  </datalist>       
+          </div>
+    
+      </div><br>
+      <div class="row">        
+          <div class="col-md-11">
+              <input type="text" value="" class="form-control " id="category" name="CategoryName" 
+              [(ngModel)]="category.CategoryName" required>
+            </div>
+            <div class="col-md-1">
+              <button class="btn btn-info btn-md" [disabled]="!frm.form.valid" (click)="addCategory()">
+                  <span class="glyphicon glyphicon-plus"></span>  
+              </button>
+              
+              </div>
+      
+        </div><br>
+        <div *ngFor="let category of categories">
+            <div class="row">
+              
+                <div class="col-md-10">                  
+                    <input type="text"  class="form-control" 
+                    [value]="category.CategoryName"  name="categoryname" [disabled]="category.CategoryId != editRowId" #name>
+                  </div>
+                  <div class="col-md-2">
+                        <button class="btn btn-info btn-md" *ngIf="category.CategoryId == editRowId" (click)="updateCategory(category.CategoryId, name.value)">
+                                <span class="glyphicon glyphicon-ok"></span>                    
+                            </button> 
+                            <button class="btn btn-info btn-md" *ngIf="category.CategoryId != editRowId" (click)="toggle(category.CategoryId)">
+                                <span class="glyphicon glyphicon-edit"></span>                    
+                            </button>            
+                        
+                    <button class="btn btn-info btn-md" (click)="deleteCategory(category.CategoryId)">
+                        <span class="glyphicon glyphicon-remove"></span>                    
+                    </button>  
+                   
+                    </div>
+              </div>    <br>
+        </div>
+      
+       
+      
+    </div></form>
+    

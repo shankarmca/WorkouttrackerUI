@@ -1,0 +1,67 @@
+<form class="form-horizontal" #wrkoutFrm="ngForm">
+<div class="well well-md col-md-12" >
+  <div class="row">
+    <div class="col-md-12">
+      <h1><span class="label label-default col-md-11">Add Work Out</span></h1>       
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-3">
+        <label for="title">Title:</label>  
+    </div>
+    <div class="col-md-8">
+        <input [(ngModel)]="workout.WorkOutTitle" name ="title" type="text" class="form-control " id="title" required>
+      </div>
+
+  </div><br>
+  <div class="row">
+      <div class="col-md-3">
+          <label for="title">Note:</label>  
+      </div>
+      <div class="col-md-8">        
+          <textarea class="form-control " [(ngModel)]="workout.WorkOutNote" name ="note" rows="3" cols="20" style="resize: vertical" id="note" required>
+
+          </textarea>
+        </div>
+  
+    </div>    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="title">Calories Burnt Per Min:</label>  
+        </div>
+        <div class="col-md-7">
+            <input type="number" [readonly]="true" [(ngModel)]="workout.CaloriesBurnPerMin" name ="calories"  class="form-control " id="calorie" required>                      
+          </div>
+          <div>
+                <button class="btn btn-default" (click)="Increment()">+</button>
+                <button class="btn btn-default" (click)="Decrement()">-</button>
+          </div>
+      </div>  <br>
+      <div class="row">
+          <div class="col-md-3">
+              <label for="title">Category:</label>  
+          </div>
+          <div class="col-md-8">
+            <select class="form-control" [(ngModel)]="workout.CategoryId" name="category" required >
+             <option [value]="0" >Select Category</option>                          
+              <option *ngFor="let category of categories" [value]="category.CategoryId">{{category.CategoryName}}</option>
+            </select>  
+
+            </div>
+      
+        </div>  <br>
+        <div class="row ">           
+            <button class="col-md-offset-5 btn btn-default" [disabled]="!wrkoutFrm.form.valid"
+             (click)="addWorkOut();wrkoutFrm.reset();">
+                Add Workout
+            </button>
+          
+        </div>
+        <div class="row" *ngIf="Info">
+
+                <div class="alert alert-info">
+                   {{Info}}
+                  </div>  
+            </div>
+  
+</div></form>
